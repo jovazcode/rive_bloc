@@ -1,0 +1,38 @@
+name: rive_bloc
+description: >
+  A Simplified Flutter BLoC API Layer, Deeply Inspired by Riverpod. RiveBloc
+  makes working with BLoC less verbose and less time-consuming.
+version: 0.0.1
+repository: https://github.com/jovazcode/rive_bloc
+topics:
+  [
+    bloc,
+    riverpod,
+    state-management,
+    providers,
+    bloc-to-bloc,
+  ]
+
+environment:
+  sdk: ">=3.0.0 <4.0.0"
+
+dependencies:
+  bloc: ^8.1.4
+  bloc_concurrency: ^0.2.5
+  flutter:
+    sdk: flutter
+  flutter_bloc: ^8.1.5
+  get_it: ^7.6.6
+  meta: ^1.11.0
+  stack_trace: ^1.11.1
+  uuid: ^4.2.0
+
+dev_dependencies:
+  flutter_test:
+    sdk: flutter
+  mocktail: ^1.0.3
+  very_good_analysis: ^5.1.0
+
+screenshots:
+  - description: The rive_bloc package logo.
+    path: screenshots/logo.png
