@@ -45,7 +45,17 @@ class WidgetRef implements RiveBlocRef {
   @override
   void invalidate(RiveBlocProviderBase provider) {
     final bloc = provider.getBinding(this);
+
     if (bloc is Computable) {
+      // We cannot invalidate a provider without invalidating all
+      // its Computable Watchers first. This is because we need to
+      // recompute the state of all Computable Watchers so that their build
+      // functions are called again and so the ref.watch() corresponding to
+      // this Computable Bloc! Otherwise, computed values would remain the
+      // same and so the values would not be updated on time.
+      provider.invalidateWatchers(this);
+
+      // Invalidate the Computable Bloc and refresh.
       (bloc as Computable).invalidate(this);
     }
   }
@@ -79,6 +89,7 @@ class WidgetRef implements RiveBlocRef {
     String uid, {
     required RiveBlocProviderBase provider,
     required RiveBlocBase<dynamic> watcher,
+    required RiveBlocProviderBase blocProvider,
     required BlocT bloc,
     required void Function(StateT state) listener,
     dynamic Function(BlocT bloc)? listenWhen,
@@ -88,6 +99,7 @@ class WidgetRef implements RiveBlocRef {
         uid,
         provider: provider,
         watcher: watcher,
+        blocProvider: blocProvider,
         bloc: bloc,
         listener: listener,
         listenWhen: listenWhen,

@@ -58,6 +58,7 @@ abstract class RiveBlocRef {
     String uid, {
     required RiveBlocProviderBase provider,
     required RiveBlocBase<dynamic> watcher,
+    required RiveBlocProviderBase blocProvider,
     required BlocT bloc,
     required void Function(StateT state) listener,
     dynamic Function(BlocT bloc)? listenWhen,
@@ -169,6 +170,7 @@ class RiveBlocState {
     String uid, {
     required RiveBlocProviderBase provider,
     required RiveBlocBase<dynamic> watcher,
+    required RiveBlocProviderBase blocProvider,
     required BlocT bloc,
     required void Function(StateT state) listener,
     dynamic Function(BlocT bloc)? listenWhen,
@@ -181,6 +183,7 @@ class RiveBlocState {
       ref,
       provider,
       watcher,
+      blocProvider,
       bloc,
       listener,
       listenWhen: listenWhen,
@@ -193,6 +196,7 @@ class _BlocListener<BlocT extends RiveBlocBase<StateT>, StateT> {
     this._ref,
     this._provider,
     this._watcher,
+    this._blocProvider,
     this._bloc,
     void Function(StateT state) listener, {
     dynamic Function(BlocT bloc)? listenWhen,
@@ -202,6 +206,7 @@ class _BlocListener<BlocT extends RiveBlocBase<StateT>, StateT> {
   final RiveBlocRef _ref;
   final RiveBlocProviderBase _provider;
   final RiveBlocBase<dynamic> _watcher;
+  final RiveBlocProviderBase _blocProvider;
   final BlocT _bloc;
 
   dynamic _lastConditionValue;
@@ -211,6 +216,11 @@ class _BlocListener<BlocT extends RiveBlocBase<StateT>, StateT> {
     void Function(StateT state) listener,
     dynamic Function(BlocT bloc)? listenWhen,
   ) {
+    if (!_provider.isFamily && _watcher is Computable) {
+      _blocProvider.addWatcher(_watcher as Computable);
+    }
+
+    // Subscribe to the bloc.
     _lastConditionValue = listenWhen?.call(_bloc);
     _subscription = _bloc.stream.listen(
       (state) {
@@ -248,6 +258,7 @@ class _BlocListener<BlocT extends RiveBlocBase<StateT>, StateT> {
     // created (cause `build` is not called again) so that values would
     // never be updated anymore.
     if (!_provider.isFamily && _watcher is Computable) {
+      _blocProvider.removeWatcher(_watcher as Computable);
       (_watcher as Computable).invalidate(_ref, refresh: false);
     }
   }

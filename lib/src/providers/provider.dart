@@ -43,6 +43,7 @@ class ProviderRef<BlocT extends RiveBlocBase<StateT>, StateT extends Object?,
         '${watcher.uid}-${provider.uid}',
         provider: watcher,
         watcher: watcherValue,
+        blocProvider: provider as RiveBlocProviderBase,
         bloc: instance,
         listener: (_) {
           // Invalidate the watcher to recompute its state
@@ -529,6 +530,7 @@ class StateProvider<BlocT extends RiveBlocBase<StateT>, StateT extends Object?>
         thisProvider.uid,
         provider: thisProvider,
         watcher: value,
+        blocProvider: thisProvider,
         bloc: value,
         listener: (_) {
           // Make the tree rebuild.
@@ -785,6 +787,7 @@ class ValueProvider<BlocT extends ValueCubit<ValueT>, ValueT extends Object?>
         thisProvider.uid,
         provider: thisProvider,
         watcher: value,
+        blocProvider: thisProvider,
         bloc: value,
         listener: (_) {
           // Make the tree rebuild.
@@ -1196,6 +1199,24 @@ class ProviderBase<BindingT extends Object, ValueT extends Object?> {
   /// Is Family Provider.
   bool get isFamily => _father != null;
 
+  final _watchers = <Computable<dynamic>>[];
+
+  @internal
+  // ignore: public_member_api_docs
+  void addWatcher(Computable<dynamic> watcher) => _watchers.add(watcher);
+
+  @internal
+  // ignore: public_member_api_docs
+  void invalidateWatchers(RiveBlocRef ref) {
+    for (final watcher in _watchers) {
+      watcher.invalidate(ref, refresh: false);
+    }
+  }
+
+  @internal
+  // ignore: public_member_api_docs
+  void removeWatcher(Computable<dynamic> watcher) => _watchers.remove(watcher);
+
   /// Registers the BLoC/Cubit instance in GetIt.
   @internal
   void registerValue(RiveBlocState state) {
@@ -1230,5 +1251,8 @@ class ProviderBase<BindingT extends Object, ValueT extends Object?> {
     if (getIt.isRegistered<BindingT>(instanceName: uid)) {
       getIt.unregister<BindingT>(instanceName: uid);
     }
+
+    // Clear watchers
+    _watchers.clear();
   }
 }

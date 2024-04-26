@@ -4,7 +4,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 
 import 'package:meta/meta.dart';
 
-import 'package:rive_bloc/rive_bloc.dart';
+import 'package:rive_bloc/src/rive_bloc.dart';
 
 /// {@template computable}
 /// A mixin that makes a Bloc/Cubit computable.
@@ -55,11 +55,14 @@ mixin Computable<T> on BlocBase<T> {
     // Reset computed value.
     _computedValue = null;
 
-    // Re-compute the state through `rebuild` so that everything
-    // occurs within a valid widgets tree (direct `call(ref, args)`
-    // would be unsafe here).
-    if (refresh) {
-      ref.rebuild();
+    // Re-compute the state.
+    //
+    // TODO(jvc): Find a way to avoid calling `this` directly.
+    // Direct `call(ref, args)` is unsafe, when invoked
+    // from ouside the widgets tree, depending on what the
+    // app compute function is supposed to do!!
+    if (refresh && !isClosed && (ref as WidgetRef).context.mounted) {
+      this(ref, args);
     }
   }
 
