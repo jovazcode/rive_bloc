@@ -57,7 +57,7 @@ mixin Computable<T> on BlocBase<T> {
 
     // Re-compute the state.
     //
-    // TODO(jvc): Find a way to avoid calling `this` directly.
+    // *** IMPORTANT ***
     // Direct `call(ref, args)` is unsafe, when invoked
     // from ouside the widgets tree, depending on what the
     // app compute function is supposed to do!!

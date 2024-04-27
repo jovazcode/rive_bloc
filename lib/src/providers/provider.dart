@@ -46,8 +46,7 @@ class ProviderRef<BlocT extends RiveBlocBase<StateT>, StateT extends Object?,
         blocProvider: provider as RiveBlocProviderBase,
         bloc: instance,
         listener: (_) {
-          // Invalidate the watcher to recompute its state
-          // on next access.
+          // Invalidate the watcher to recompute its state.
           invalidate(watcher);
         },
       );
@@ -191,8 +190,10 @@ class StreamProvider<BlocT extends StreamBloc<ValueT>, ValueT extends Object?>
 
   @override
   String toString() {
-    return 'StreamProvider<$BlocT> { uid: $uid ${name != null ? ', '
-        'name: $name' : ''}}';
+    if (name != null) {
+      return name!;
+    }
+    return 'StreamProvider<$BlocT> { uid: $uid }';
   }
 }
 
@@ -330,8 +331,10 @@ class AsyncProvider<BlocT extends AsyncCubit<ValueT>, ValueT extends Object?>
 
   @override
   String toString() {
-    return 'AsyncProvider<$BlocT> { uid: $uid ${name != null ? ', '
-        'name: $name' : ''}}';
+    if (name != null) {
+      return name!;
+    }
+    return 'AsyncProvider<$BlocT> { uid: $uid }';
   }
 }
 
@@ -588,8 +591,10 @@ class StateProvider<BlocT extends RiveBlocBase<StateT>, StateT extends Object?>
 
   @override
   String toString() {
-    return 'StateProvider<$BlocT> { uid: $uid ${name != null ? ', '
-        'name: $name' : ''}}';
+    if (name != null) {
+      return name!;
+    }
+    return 'StateProvider<$BlocT> { uid: $uid }';
   }
 }
 
@@ -843,8 +848,10 @@ class ValueProvider<BlocT extends ValueCubit<ValueT>, ValueT extends Object?>
 
   @override
   String toString() {
-    return 'ValueProvider<$BlocT, $ValueT> { uid: $uid ${name != null ? ', '
-        'name: $name' : ''}}';
+    if (name != null) {
+      return name!;
+    }
+    return 'ValueProvider<$BlocT, $ValueT> { uid: $uid }';
   }
 }
 
@@ -1128,8 +1135,10 @@ class FinalProvider<T extends Object> extends ProviderBase<T, T>
 
   @override
   String toString() {
-    return 'FinalProvider<$T> { uid: $uid ${name != null ? ', '
-        'name: $name' : ''}}';
+    if (name != null) {
+      return name!;
+    }
+    return 'FinalProvider<$T> { uid: $uid }';
   }
 }
 
