@@ -71,6 +71,10 @@ class AsyncCubit<ValueT extends Object?> extends RiverCubit<AsyncValue<ValueT>>
     return newState;
   }
 
+  /// You can set the [state] value at any time from outside!
+  @nonVirtual
+  set state(AsyncValue<ValueT> value) => emit(value);
+
   @override
   String toString() {
     return 'AsyncCubit<$ValueT> { state: $state }';
