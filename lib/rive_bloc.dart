@@ -29,5 +29,6 @@ export 'src/rive_bloc.dart'
         RiverCubit,
         StateProvider,
         StreamBloc,
+        StreamProvider,
         ValueCubit,
         ValueProvider;

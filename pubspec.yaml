@@ -2,7 +2,7 @@ name: rive_bloc
 description: >
   A Simplified Flutter BLoC API Layer, Deeply Inspired by Riverpod. RiveBloc
   makes working with BLoC less verbose and less time-consuming.
-version: 0.0.2
+version: 0.0.3
 repository: https://github.com/jovazcode/rive_bloc
 topics:
   [
