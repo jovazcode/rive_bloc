@@ -9,3 +9,6 @@ Initial Version of the library.
 
 ## 0.0.3
 * Added StreamProvider.
+
+## 0.0.4
+* Fix bug in Computable mixin when T is nullable

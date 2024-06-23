@@ -86,7 +86,13 @@ mixin Computable<T> on BlocBase<T> {
     _computedValue = build(ref, args);
 
     // Await and emit the new computed state.
-    final value = await _computedValue!;
+    // The following line is buggy when T is nullable (Object?):
+    // final value = await _computedValue!;
+    // So, we replace it with the following line:
+    final value = _computedValue is FutureOr<T>
+        ? await (_computedValue as FutureOr<T>)
+        : _computedValue as T;
+
     if (!isClosed) {
       emit(value);
     }
