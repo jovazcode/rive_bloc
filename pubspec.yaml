@@ -22,7 +22,7 @@ dependencies:
   flutter:
     sdk: flutter
   flutter_bloc: ^8.1.5
-  get_it: ^7.6.6
+  get_it: ">=7.6.6 <9.0.0"
   meta: ^1.11.0
   stack_trace: ^1.11.1
   uuid: ^4.2.0
