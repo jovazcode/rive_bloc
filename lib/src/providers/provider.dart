@@ -856,7 +856,7 @@ class ValueProvider<BlocT extends ValueCubit<ValueT>, ValueT extends Object?>
 }
 
 /// {@template provider}
-/// Creates and exposes [RiveBloc]/[RiverCubit] states.
+/// Creates and exposes [RiveBloc]/[RiveCubit] states.
 /// {@endtemplate}
 /// {@template provider_description}
 ///

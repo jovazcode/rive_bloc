@@ -7,9 +7,9 @@ export 'computable.dart';
 export 'stream_bloc.dart';
 export 'value_cubit.dart';
 
-/// A base class for [RiveBloc] and [RiverCubit].
+/// A base class for [RiveBloc] and [RiveCubit].
 class RiveBlocBase<T> extends BlocBase<T> {
-  /// A base class for [RiveBloc] and [RiverCubit].
+  /// A base class for [RiveBloc] and [RiveCubit].
   RiveBlocBase(super.state);
 }
 
@@ -40,17 +40,17 @@ class RiveBloc<Event, State> extends Bloc<Event, State>
 /// This [Cubit] is intended to be used through a [RiveBlocProviderBase]
 /// which will automatically gives it access to a [RiveBlocRef] instance.
 ///
-/// Thus, [RiverCubit] components have the 'extra' capacity to `read` values
+/// Thus, [RiveCubit] components have the 'extra' capacity to `read` values
 /// from other providers, and also `call` their methods, through the [ref]
 /// parameter!!
 ///
 /// ***IMPORTANT***: [RiveBlocRef.watch] is not intended to be called
-/// from every method of [RiverCubit] components, so its use is unsupported.
+/// from every method of [RiveCubit] components, so its use is unsupported.
 ///
 /// {@endtemplate}
-class RiverCubit<State extends Object?> extends Cubit<State>
+class RiveCubit<State extends Object?> extends Cubit<State>
     with RefHandler
     implements RiveBlocBase<State> {
   /// {@macro river_cubit}
-  RiverCubit(State Function() initialState) : super(initialState());
+  RiveCubit(State Function() initialState) : super(initialState());
 }

@@ -23,7 +23,7 @@ import 'package:rive_bloc/src/rive_bloc.dart';
 /// The [build] method will be called only when the [RiveBlocProviderBase]
 /// is first `read` or `watched`.
 ///
-/// Also, the [AsyncCubit] as any [RiverCubit] has the 'extra' capacity to
+/// Also, the [AsyncCubit] as any [RiveCubit] has the 'extra' capacity to
 /// `read` other providers from any method through the [ref] parameter. So
 /// you can access their values and `call` their methods from any part of
 /// [AsyncCubit].
@@ -40,7 +40,7 @@ import 'package:rive_bloc/src/rive_bloc.dart';
 /// of the [build].
 ///
 /// {@endtemplate}
-class AsyncCubit<ValueT extends Object?> extends RiverCubit<AsyncValue<ValueT>>
+class AsyncCubit<ValueT extends Object?> extends RiveCubit<AsyncValue<ValueT>>
     with Computable<AsyncValue<ValueT>>
     implements RiveBlocBase<AsyncValue<ValueT>> {
   /// {@macro async_cubit}

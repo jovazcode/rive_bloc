@@ -422,7 +422,7 @@ abstract class RiveBlocProvider<BlocT extends RiveBlocBase<StateT>,
   }
 
   /// Creates a new [RiveBlocProviderBase] that exposes a
-  /// [RiveBloc]/[RiverCubit].
+  /// [RiveBloc]/[RiveCubit].
   /// @macro provider_description
   static StateProvider<BlocT, StateT>
       state<BlocT extends RiveBlocBase<StateT>, StateT extends Object>(

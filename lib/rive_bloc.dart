@@ -26,7 +26,7 @@ export 'src/rive_bloc.dart'
         RiveBlocStatefulState,
         RiveBlocStatefulWidget,
         RiveBlocWidget,
-        RiverCubit,
+        RiveCubit,
         StateProvider,
         StreamBloc,
         StreamProvider,
