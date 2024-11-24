@@ -79,7 +79,7 @@ final class _StreamBlocDataEvent<ValueT extends Object?>
 /// Also, the [StreamBloc] as any [RiveBloc] has the 'extra' capacity to
 /// `read` other providers from any method through the [ref] parameter. So
 /// you can access their values and `call` their methods from any part of
-/// [AsyncCubit].
+/// [StreamBloc].
 ///
 /// ***IMPORTANT***: While it is absolutely safe to use both
 /// [RiveBlocRef.read] and [RiveBlocRef.watch] inside the constructor method
