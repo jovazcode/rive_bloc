@@ -52,5 +52,5 @@ class RiveCubit<State extends Object?> extends Cubit<State>
     with RefHandler
     implements RiveBlocBase<State> {
   /// {@macro river_cubit}
-  RiveCubit(State Function() initialState) : super(initialState());
+  RiveCubit(State Function() initialStateFn) : super(initialStateFn());
 }

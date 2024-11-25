@@ -424,13 +424,13 @@ abstract class RiveBlocProvider<BlocT extends RiveBlocBase<StateT>,
   /// Creates a new [RiveBlocProviderBase] that exposes a
   /// [RiveBloc]/[RiveCubit].
   /// @macro provider_description
-  static StateProvider<BlocT, StateT>
-      state<BlocT extends RiveBlocBase<StateT>, StateT>(
+  static StateProvider<BlocT, T>
+      state<BlocT extends RiveBlocBase<T>, T extends Object?>(
     BlocT Function() createFn, {
     String? name,
     bool keepAlive = false,
   }) =>
-          StateProvider<BlocT, StateT>(
+          StateProvider<BlocT, T>(
             createFn,
             uid: const Uuid().v4(),
             name: name,
