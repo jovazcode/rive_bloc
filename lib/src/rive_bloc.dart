@@ -425,7 +425,7 @@ abstract class RiveBlocProvider<BlocT extends RiveBlocBase<StateT>,
   /// [RiveBloc]/[RiveCubit].
   /// @macro provider_description
   static StateProvider<BlocT, StateT>
-      state<BlocT extends RiveBlocBase<StateT>, StateT extends Object>(
+      state<BlocT extends RiveBlocBase<StateT>, StateT>(
     BlocT Function() createFn, {
     String? name,
     bool keepAlive = false,
