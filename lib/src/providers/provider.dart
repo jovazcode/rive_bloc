@@ -202,7 +202,7 @@ class StreamProvider<BlocT extends StreamBloc<ValueT>, ValueT extends Object?>
 /// [AsyncValue]s of [ValueT], computed asynchronously.
 /// {@endtemplate}
 /// {@macro provider_description}
-class AsyncProvider<BlocT extends AsyncCubit<ValueT>, ValueT extends Object?>
+class AsyncProvider<BlocT extends AsyncCubit<ValueT>, ValueT>
     extends StateProvider<BlocT, AsyncValue<ValueT>> {
   /// {@macro provider}
   AsyncProvider(

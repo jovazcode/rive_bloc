@@ -40,7 +40,7 @@ import 'package:rive_bloc/src/rive_bloc.dart';
 /// of the [build].
 ///
 /// {@endtemplate}
-class AsyncCubit<ValueT extends Object?> extends RiveCubit<AsyncValue<ValueT>>
+class AsyncCubit<ValueT> extends RiveCubit<AsyncValue<ValueT>>
     with Computable<AsyncValue<ValueT>>
     implements RiveBlocBase<AsyncValue<ValueT>> {
   /// {@macro async_cubit}
