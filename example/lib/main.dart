@@ -1,3 +1,5 @@
+// ignore_for_file: avoid_print
+
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
@@ -201,8 +203,8 @@ class Toolbar extends HookWidget {
                     ref.read(todoListFilter).state = TodoListFilter.all,
                 style: ButtonStyle(
                   visualDensity: VisualDensity.compact,
-                  foregroundColor: MaterialStateProperty.all(
-                      textColorFor(TodoListFilter.all)),
+                  foregroundColor:
+                      WidgetStateProperty.all(textColorFor(TodoListFilter.all)),
                 ),
                 child: const Text('All'),
               ),
@@ -215,7 +217,7 @@ class Toolbar extends HookWidget {
                     ref.read(todoListFilter).state = TodoListFilter.active,
                 style: ButtonStyle(
                   visualDensity: VisualDensity.compact,
-                  foregroundColor: MaterialStateProperty.all(
+                  foregroundColor: WidgetStateProperty.all(
                     textColorFor(TodoListFilter.active),
                   ),
                 ),
@@ -230,7 +232,7 @@ class Toolbar extends HookWidget {
                     ref.read(todoListFilter).state = TodoListFilter.completed,
                 style: ButtonStyle(
                   visualDensity: VisualDensity.compact,
-                  foregroundColor: MaterialStateProperty.all(
+                  foregroundColor: WidgetStateProperty.all(
                     textColorFor(TodoListFilter.completed),
                   ),
                 ),

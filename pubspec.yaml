@@ -21,7 +21,7 @@ dependencies:
   bloc_concurrency: ^0.2.5
   flutter:
     sdk: flutter
-  flutter_bloc: ^8.1.5
+  flutter_bloc: ^8.1.6
   get_it: ^7.6.6
   meta: ^1.11.0
   stack_trace: ^1.11.1
