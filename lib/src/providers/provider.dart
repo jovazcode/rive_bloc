@@ -34,8 +34,6 @@ class ProviderRef<BlocT extends RiveBlocBase<StateT>, StateT extends Object?,
     Watchable<BindingT, T> provider,
   ) {
     final instance = (provider as Readable<BindingT, T>).getBinding(this);
-    print('!!!DEBUG <ProviderRef> watch[$this]: instance=$instance, watcher='
-        '$watcher, watcherValue=$watcherValue');
 
     // If the watcher value is `Computable` and the watched instance is a
     // `RiveBlocBase` then it must be recomputed anytime the watched
