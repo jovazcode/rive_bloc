@@ -68,8 +68,8 @@ class _RiveBlocWidgetState extends State<RiveBlocWidget> {
 
   @override
   void initState() {
-    _state = RiveBlocState(this);
     super.initState();
+    _state = RiveBlocState(this);
   }
 
   @override
@@ -135,10 +135,11 @@ abstract class RiveBlocStatefulState<T extends RiveBlocStatefulWidget>
 
   @override
   void initState() {
-    _state = RiveBlocState(this);
     super.initState();
+    _state = RiveBlocState(this);
+    ref = WidgetRef(context, state: _state);
   }
 
   /// An object that allows widgets to interact with providers.
-  late RiveBlocRef ref = WidgetRef(context, state: _state);
+  late RiveBlocRef ref;
 }

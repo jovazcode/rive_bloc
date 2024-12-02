@@ -34,6 +34,8 @@ class ProviderRef<BlocT extends RiveBlocBase<StateT>, StateT extends Object?,
     Watchable<BindingT, T> provider,
   ) {
     final instance = (provider as Readable<BindingT, T>).getBinding(this);
+    print('!!!DEBUG <ProviderRef> watch[$this]: instance=$instance, watcher='
+        '$watcher, watcherValue=$watcherValue');
 
     // If the watcher value is `Computable` and the watched instance is a
     // `RiveBlocBase` then it must be recomputed anytime the watched
@@ -46,8 +48,20 @@ class ProviderRef<BlocT extends RiveBlocBase<StateT>, StateT extends Object?,
         blocProvider: provider as RiveBlocProviderBase,
         bloc: instance,
         listener: (_) {
-          // Invalidate the watcher to recompute its state.
-          invalidate(watcher);
+          try {
+            // Invalidate the watcher to recompute its state.
+            invalidate(watcher);
+          } catch (err, stackTrace) {
+            throw StateError(
+              'ProviderRef.watch() cannot invalidate '
+              'the watching provider ($watcher), '
+              "maybe trying to look up a deactivated widget's ancestor?\n"
+              'Try binding your watching provider to the root of your Flutter '
+              'app with putting there the first call to '
+              '`ref.read(yourWatchingProvider)`.\n\n'
+              '$err\n $stackTrace',
+            );
+          }
         },
       );
     }
@@ -202,7 +216,7 @@ class StreamProvider<BlocT extends StreamBloc<ValueT>, ValueT extends Object?>
 /// [AsyncValue]s of [ValueT], computed asynchronously.
 /// {@endtemplate}
 /// {@macro provider_description}
-class AsyncProvider<BlocT extends AsyncCubit<ValueT>, ValueT>
+class AsyncProvider<BlocT extends AsyncCubit<ValueT>, ValueT extends Object?>
     extends StateProvider<BlocT, AsyncValue<ValueT>> {
   /// {@macro provider}
   AsyncProvider(
