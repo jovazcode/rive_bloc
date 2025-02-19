@@ -22,7 +22,7 @@ dependencies:
   flutter:
     sdk: flutter
   flutter_bloc: ^9.0.0
-  get_it: ^7.6.6
+  get_it: ^8.0.0
   meta: ^1.11.0
   stack_trace: ^1.11.1
   uuid: ^4.2.0
@@ -31,7 +31,7 @@ dev_dependencies:
   flutter_test:
     sdk: flutter
   mocktail: ^1.0.3
-  very_good_analysis: ^5.1.0
+  very_good_analysis: ^6.0.0
 
 screenshots:
   - description: The rive_bloc package logo.
