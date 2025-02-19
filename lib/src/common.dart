@@ -156,7 +156,7 @@ abstract class AsyncValue<T> {
   ///    (err) => err is! FormatException,
   ///   );
   /// }
-  /// ```
+  /// ```dart
   static Future<AsyncValue<T>> guard<T>(
     Future<T> Function() future, [
     bool Function(Object)? test,
