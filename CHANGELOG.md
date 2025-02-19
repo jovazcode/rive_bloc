@@ -17,4 +17,7 @@ Initial Version of the library.
 * Update state method signature to remove unnecessary type constraint
 * Update RiveCubit constructor parameter name for clarity
 * Update foregroundColor property to use WidgetStateProperty in Toolbar
-* Bump flutter_bloc dependency version to 8.1.6
+* Bump flutter_bloc dependency version to 9.0.0
+* Bump very_good_analysis from 5.1.0 to 6.0.0
+* Bump get_it to 8.0.0
+* Discard automatic loading state emission in AsyncCubit internal build
