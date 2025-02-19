@@ -59,7 +59,7 @@ class AsyncCubit<ValueT extends Object?> extends RiveCubit<AsyncValue<ValueT>>
   @internal
   Future<AsyncValue<ValueT>> build(RiveBlocRef ref, Args? args) async {
     // Emit loading state.
-    emit(AsyncValue<ValueT>.loading());
+    // emit(AsyncValue<ValueT>.loading());
 
     // Run the async function and emit the result.
     final newState = await AsyncValue.guard(
