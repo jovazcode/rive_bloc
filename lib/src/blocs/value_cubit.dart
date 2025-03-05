@@ -104,6 +104,7 @@ class ValueCubit<T extends Object?> extends RiveCubit<T>
     FutureOr<T> Function(
       RiveBlocRef ref,
       Args args,
+      T state,
     )? build,
   })  : _valueFn = build,
         super(() => initialState);
@@ -111,6 +112,7 @@ class ValueCubit<T extends Object?> extends RiveCubit<T>
   final FutureOr<T> Function(
     RiveBlocRef ref,
     Args args,
+    T state,
   )? _valueFn;
 
   /// Obtains the [Future] associated with the `build` function
@@ -122,7 +124,11 @@ class ValueCubit<T extends Object?> extends RiveCubit<T>
   @override
   FutureOr<T> build(RiveBlocRef ref, Args? args) {
     if (_valueFn == null) return state;
-    return _valueFn!(ref, args ?? const Args());
+    return _valueFn!(
+      ref,
+      args ?? const Args(),
+      state,
+    );
   }
 
   /// You can set the [state] value at any time from outside!

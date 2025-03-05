@@ -21,3 +21,7 @@ Initial Version of the library.
 * Bump very_good_analysis from 5.1.0 to 6.0.0
 * Bump get_it to 8.0.0
 * Discard automatic loading state emission in AsyncCubit internal build
+
+## 0.0.5
+* Add current state parameter to build function in AsyncCubit
+* Add current state  parameter to build function in ValueCubit

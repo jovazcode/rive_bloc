@@ -43,7 +43,7 @@ final todoListFilter =
 /// number of uncompleted todos doesn't (such as when editing a todo).
 final uncompletedTodosCount = RiveBlocProvider.value(() => ValueCubit<int>(
       0,
-      build: (ref, args) {
+      build: (ref, args, _) {
         return ref
             .watch(todoListProvider)
             .state
@@ -58,7 +58,7 @@ final uncompletedTodosCount = RiveBlocProvider.value(() => ValueCubit<int>(
 /// list unless either the filter of or the todo-list updates.
 final filteredTodos =
     RiveBlocProvider.value<ValueCubit<List<Todo>>, List<Todo>>(
-  () => ValueCubit([], build: (ref, args) {
+  () => ValueCubit([], build: (ref, args, _) {
     final filter = ref.watch(todoListFilter).state;
     final todos = ref.watch(todoListProvider).state;
 

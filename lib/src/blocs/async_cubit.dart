@@ -49,11 +49,16 @@ class AsyncCubit<ValueT extends Object?> extends RiveCubit<AsyncValue<ValueT>>
   final FutureOr<ValueT> Function(
     RiveBlocRef ref,
     Args args,
+    ValueT? state,
   ) _asyncFn;
 
   /// Obtains the [Future] associated with the `async` function
   /// of this [AsyncCubit].
-  Future<ValueT> get future async => await _asyncFn(ref, args ?? const Args());
+  Future<ValueT> get future async => await _asyncFn(
+        ref,
+        args ?? const Args(),
+        state.value,
+      );
 
   @override
   @internal
@@ -63,7 +68,11 @@ class AsyncCubit<ValueT extends Object?> extends RiveCubit<AsyncValue<ValueT>>
 
     // Run the async function and emit the result.
     final newState = await AsyncValue.guard(
-      () async => await _asyncFn(ref, args ?? const Args()),
+      () async => await _asyncFn(
+        ref,
+        args ?? const Args(),
+        state.value,
+      ),
     );
     emit(newState);
 
